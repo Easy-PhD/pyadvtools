@@ -53,7 +53,7 @@ def transform_to_data_list(
                 standard_path(original_data), extension, reverse, is_standard_file_name, search_year_list
             )
             data_list = combine_content_in_list([read_list(f, "r", None) for f in files], insert_flag, before_after)
-        elif os.path.isfile(original_data):
+        elif original_data.strip().endswith(extension) or os.path.isfile(original_data):
             data_list = read_list(original_data, "r", None)
         else:
             data_list = original_data.splitlines(keepends=True)
