@@ -38,8 +38,8 @@ def read_list(file_name: str, read_flag: str = "r", path_storage: Optional[str] 
     if (not os.path.isfile(file_name)) or (not os.path.exists(file_name)):
         return []
 
-    with open(file_name, read_flag) as f:
-        data_list = f.readlines()
+    with open(file_name, read_flag, encoding="utf-8") as f:
+        data_list = f.read().splitlines(keepends=True)
     return delete_empty_lines_last_occur_add_new_line(data_list)
 
 
@@ -71,7 +71,7 @@ def write_list(
             os.makedirs(full_path)
 
         temp_data_list = [i for i in data_list if isinstance(i, bytes)]
-        with open(full_file_name, "wb") as f:
+        with open(full_file_name, "wb", encoding="utf-8") as f:
             f.writelines(temp_data_list)
 
     else:
@@ -91,7 +91,7 @@ def write_list(
             if (not re.search("a", write_flag)) and check and os.path.isfile(full_file_name):
                 print(f"{full_file_name} has existed and do nothing.")
             else:
-                with open(full_file_name, write_flag) as f:
+                with open(full_file_name, write_flag, encoding="utf-8") as f:
                     f.writelines(new_data_list)
 
         elif delete_original_file:

@@ -25,7 +25,7 @@ def delete_empty_lines_first_occur(data_list: List[str]) -> List[str]:
 def delete_empty_lines_last_occur_add_new_line(data_list: List[str]) -> List[str]:
     data_list = delete_empty_lines_first_occur(data_list[::-1])[::-1]
     if data_list:
-        data_list[-1] = data_list[-1].rstrip() + "\n"
+        data_list[-1] = f"{data_list[-1].rstrip()}\n"
     return data_list
 
 
