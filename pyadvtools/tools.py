@@ -1,5 +1,6 @@
 import os
 import re
+from pathlib import Path
 from typing import List, Union
 
 from pyadvtools.core.sort import sort_int_str
@@ -73,7 +74,7 @@ def generate_nested_dict(path_storage: str) -> dict:
 
     nested_dict = {}
     for k, v in files_dict.items():
-        keys = [i for i in k.split("/") if i.strip()]
+        keys = Path(k).parts[1:]
 
         if not keys:
             continue
