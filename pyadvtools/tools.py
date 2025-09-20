@@ -17,25 +17,24 @@ def iterate_obtain_full_file_names(
     is_standard_file_name: bool = True,
     search_year_list: List[str] = [],
 ) -> List[str]:
-    """
-    Recursively retrieves full file paths with specified extension from a directory,
-    optionally filtered by year patterns and sorted.
+    """Recursively retrieve full file paths with specified extension.
 
-    Walks through the directory tree and collects files matching the given extension,
-    with optional filtering based on standardized file name patterns containing specific years.
+    Walks through a directory tree and collects files matching the given
+    extension, with optional filtering based on year patterns and sorting.
 
     Args:
-        path_storage: Root directory path to search for files
-        extension: Target file extension to filter (e.g., 'txt', 'csv')
-        reverse: If True, sorts files in reverse order; otherwise in natural order
-        is_standard_file_name: If True, enables year-based filtering when search_year_list is provided
-        search_year_list: List of years to filter filenames (e.g., ['2020', '2021'])
+        path_storage: Root directory path to search for files.
+        extension: Target file extension to filter (e.g., 'txt', 'csv').
+        reverse: If True, sorts files in reverse order; otherwise natural order.
+        is_standard_file_name: If True, enables year-based filtering.
+        search_year_list: List of years to filter filenames.
 
     Returns:
-        List[str]: List of full file paths matching the criteria, sorted accordingly
+        List[str]: List of full file paths matching criteria, sorted accordingly.
 
-    Raises:
-        Note: Returns empty list if the directory path does not exist
+    Examples:
+        >>> files = iterate_obtain_full_file_names("/path", "txt", True, True, ["2023"])
+        # Returns all .txt files from 2023, sorted in reverse order
     """
     # Return empty list if the target directory does not exist
     if not os.path.exists(path_storage):
@@ -74,31 +73,29 @@ def transform_to_data_list(
     insert_flag: Union[List[str], str, None] = None,
     before_after: str = "after"
 ) -> List[str]:
-    """
-    Transform input data from various formats into a unified list of strings.
+    """Transform input data from various formats into a unified list of strings.
 
     Supports multiple input types including directories, files, raw strings,
-    and string lists, and returns a consolidated list of text lines.
+    and string lists, returning a consolidated list of text lines.
 
     Args:
-        original_data: Input source, which can be a directory path, file path,
-                      multi-line string, or list of strings
-        extension: Target file extension to filter when processing directories
-        reverse: Whether to reverse the order of files when reading from directory
-        is_standard_file_name: Whether to use standardized file name processing
-        search_year_list: Optional list of years to filter files by
-        insert_flag: Content to insert between combined data chunks; can be string,
-                    list of strings, or None for no insertion
-        before_after: Insert position relative to existing content - 'before' or 'after'
+        original_data: Input source - directory path, file path, multi-line
+                      string, or list of strings.
+        extension: Target file extension to filter when processing directories.
+        reverse: Whether to reverse the order of files when reading from directory.
+        is_standard_file_name: Whether to use standardized file name processing.
+        search_year_list: Optional list of years to filter files by.
+        insert_flag: Content to insert between combined data chunks.
+        before_after: Insert position relative to existing content.
 
     Returns:
-        List[str]: Consolidated list of text lines from all processed sources
+        List[str]: Consolidated list of text lines from all processed sources.
 
-    Notes:
-        - For directory inputs: recursively reads all files with matching extension
-        - For file inputs: reads all lines from the specified file
-        - For string inputs: splits into lines while preserving line endings
-        - For list inputs: returns the list directly as the result
+    Examples:
+        >>> transform_to_data_list("/path/to/files", "txt")
+        # Returns combined content from all .txt files in directory
+        >>> transform_to_data_list("line1\nline2", "txt")
+        ['line1\n', 'line2\n']
     """
     # Handle string input (directory path, file path, or multi-line string)
     if isinstance(original_data, str):
@@ -129,23 +126,21 @@ def transform_to_data_list(
 
 
 def generate_nested_dict(path_storage: str) -> dict:
-    """
-    Generate a nested dictionary structure representing the directory hierarchy
-    and file organization from a given root path.
+    """Generate a nested dictionary structure representing directory hierarchy.
 
-    This function recursively walks through the directory tree, collects all files,
-    and constructs a nested dictionary that mirrors the folder structure with
-    files organized under their respective directories.
+    Recursively walks through a directory tree and constructs a nested
+    dictionary that mirrors the folder structure with files organized
+    under their respective directories.
 
     Args:
-        path_storage: Root directory path to generate the nested structure from
+        path_storage: Root directory path to generate structure from.
 
     Returns:
-        dict: Nested dictionary representing the directory hierarchy with sorted file lists
+        dict: Nested dictionary representing directory hierarchy with sorted file lists.
 
-    Example:
-        Input: '/root/path'
-        Output: {
+    Examples:
+        >>> generate_nested_dict("/path/to/project")
+        {
             'folder1': {
                 'subfolder1': ['file1.txt', 'file2.txt'],
                 'subfolder2': ['file3.txt']

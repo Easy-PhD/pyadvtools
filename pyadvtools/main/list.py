@@ -9,10 +9,25 @@ def combine_content_in_list(
     insert_flag: Union[List[str], str, None] = None,
     before_after: str = "after",
 ) -> List[str]:
-    """
-    Combine content in list.
+    """Combine content in list with optional insertion flags.
 
-    Add insert_flag for every item in data.
+    Combines content from a list of strings or list of string lists,
+    optionally inserting flags between each item.
+
+    Args:
+        data_list: List of strings or list of string lists to combine.
+        insert_flag: Content to insert between items. Can be a string,
+                    list of strings, or None for no insertion.
+        before_after: Position to insert flag - "before" or "after" each item.
+
+    Returns:
+        List[str]: Combined list with optional insertions.
+
+    Examples:
+        >>> combine_content_in_list(["a", "b"], "---")
+        ['a', '---', 'b', '---']
+        >>> combine_content_in_list([["a", "b"], ["c", "d"]], "---")
+        ['a', 'b', '---', 'c', 'd', '---']
     """
     if before_after not in ["after", "before"]:
         before_after = "after"
@@ -54,7 +69,27 @@ def insert_list_in_list(
     insert_before_after: str = "after",
     insert_times: float = 1,
 ) -> List[str]:
-    """Insert list in list."""
+    """Insert content into a list at specified positions.
+
+    Inserts a list of content into another list either at a specific index
+    or at positions matching a regex pattern.
+
+    Args:
+        data_list: List to insert content into.
+        insert_content_list: Content to insert.
+        insert_flag: Position indicator - integer index or regex pattern.
+        insert_before_after: "before" or "after" the target position.
+        insert_times: Number of times to perform insertion (for regex).
+
+    Returns:
+        List[str]: New list with content inserted.
+
+    Examples:
+        >>> insert_list_in_list(["a", "b", "c"], ["X", "Y"], 2)
+        ['a', 'b', 'X', 'Y', 'c']
+        >>> insert_list_in_list(["a", "b", "c"], ["X"], "b", "before")
+        ['a', 'X', 'b', 'c']
+    """
     new_list = []
 
     if isinstance(insert_flag, int):
@@ -89,7 +124,23 @@ def insert_list_in_list(
 def pairwise_combine_in_list(
     data_list_list_one: List[List[str]], data_list_list_two: List[List[str]], mid_flag: Union[str, list] = "\n"
 ) -> List[List[str]]:
-    """Pair combine."""
+    """Pairwise combine two lists of lists.
+
+    Combines corresponding lists from two list-of-lists structures.
+    The lists must have the same length.
+
+    Args:
+        data_list_list_one: First list of lists to combine.
+        data_list_list_two: Second list of lists to combine.
+        mid_flag: Content to insert between combined lists.
+
+    Returns:
+        List[List[str]]: List of combined lists, or empty list if lengths don't match.
+
+    Examples:
+        >>> pairwise_combine_in_list([["a"], ["b"]], [["c"], ["d"]])
+        [['a', 'c'], ['b', 'd']]
+    """
     if len(data_list_list_one) == 0:
         return data_list_list_two
     if len(data_list_list_two) == 0:
@@ -111,7 +162,24 @@ def pairwise_combine_in_list(
 
 
 def substitute_in_list(old_list: List[str], new_list: List[str], data_list: List[str]) -> List[str]:
-    """Substitute."""
+    """Substitute patterns in list elements.
+
+    Performs regex substitutions on each element of a list, replacing
+    patterns from old_list with corresponding patterns from new_list.
+
+    Args:
+        old_list: List of regex patterns to find.
+        new_list: List of replacement patterns (must match old_list length).
+        data_list: List of strings to perform substitutions on.
+
+    Returns:
+        List[str]: List with substitutions applied, or original list if
+                  old_list and new_list lengths don't match.
+
+    Examples:
+        >>> substitute_in_list(["old"], ["new"], ["old text", "another old"])
+        ['new text', 'another new']
+    """
     if len(old_list) != len(new_list):
         print(f"The lengths of {old_list} and {new_list} should be equal.")
         return data_list

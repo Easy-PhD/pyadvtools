@@ -6,16 +6,24 @@ from pyadvtools.core.delete import delete_empty_lines_first_occur, delete_empty_
 
 
 def is_valid_filename(filename):
-    """
-    Check if a filename is valid for common file systems.
+    """Check if a filename is valid for common file systems.
 
-    Validates against illegal characters, reserved patterns, and problematic naming conventions.
+    Validates a filename against common file system restrictions including
+    illegal characters, reserved patterns, and naming conventions.
 
     Args:
-        filename (str): The filename to validate
+        filename: The filename to validate.
 
     Returns:
-        bool: True if valid, False otherwise
+        bool: True if valid, False otherwise.
+
+    Examples:
+        >>> is_valid_filename("test.txt")
+        True
+        >>> is_valid_filename("test")
+        False
+        >>> is_valid_filename("file<name>.txt")
+        False
     """
     # Empty filename check
     if not filename:
@@ -49,20 +57,26 @@ def is_valid_filename(filename):
 
 
 def read_list(file_name: str, read_flag: str = "r", path_storage: Optional[str] = None) -> List[str]:
-    """
-    Read a text file and return its content as a list of lines.
+    """Read a text file and return its content as a list of lines.
 
-    Handles file path construction, existence checks, and post-processes the content
-    by removing empty lines and ensuring proper newline formatting.
+    Reads a text file and returns its content as a list of strings,
+    with proper handling of file paths, existence checks, and content
+    formatting.
 
     Args:
-        file_name: Name of the file to read
-        read_flag: File open mode (default: "r" for read)
-        path_storage: Optional directory path to prepend to file_name
+        file_name: Name of the file to read.
+        read_flag: File open mode (default: "r" for read).
+        path_storage: Optional directory path to prepend to file_name.
 
     Returns:
-        List[str]: List of file lines with empty lines cleaned and formatting normalized
-                  Returns empty list if file doesn't exist
+        List[str]: List of file lines with proper formatting, or empty list
+                  if file doesn't exist.
+
+    Examples:
+        >>> read_list("test.txt")
+        ['line1\n', 'line2\n']
+        >>> read_list("nonexistent.txt")
+        []
     """
     # Construct full path if storage directory is provided
     if path_storage is not None:
@@ -92,25 +106,28 @@ def write_list(
     compulsory: bool = False,
     delete_original_file: bool = False,
 ) -> None:
-    """
-    Write data to a file with comprehensive file handling and validation.
+    """Write data to a file with comprehensive file handling.
 
-    Supports both text and binary data, with options for empty line handling,
-    file existence checks, and directory creation.
+    Writes a list of strings or bytes to a file with extensive options
+    for file handling, validation, and content processing.
 
     Args:
-        data_list: List of strings or bytes to write
-        file_name: Target file name
-        write_flag: File open mode ('w', 'a', 'wb', etc.)
-        path_storage: Optional directory path for the file
-        check: If True, checks if file exists before overwriting
-        delete_first_empty: Remove empty lines from start of data
-        delete_last_empty: Remove empty lines from end of data
-        compulsory: Write file even if data is empty
-        delete_original_file: Delete existing file if data is empty and not compulsory
+        data_list: List of strings or bytes to write.
+        file_name: Target file name.
+        write_flag: File open mode ('w', 'a', 'wb', etc.).
+        path_storage: Optional directory path for the file.
+        check: If True, checks if file exists before overwriting.
+        delete_first_empty: Remove empty lines from start of data.
+        delete_last_empty: Remove empty lines from end of data.
+        compulsory: Write file even if data is empty.
+        delete_original_file: Delete existing file if data is empty.
 
     Returns:
-        None: Writes to file or prints error messages
+        None: Writes to file or prints error messages.
+
+    Examples:
+        >>> write_list(["line1", "line2"], "output.txt")
+        # Writes lines to output.txt
     """
     # Validate filename
     name = os.path.basename(file_name)

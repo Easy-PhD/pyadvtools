@@ -3,6 +3,33 @@ from typing import List, Union
 
 
 def convert_to_ordered_number(number: int) -> Union[str, int]:
+    """Convert an integer to its ordinal form (1st, 2nd, 3rd, etc.).
+
+    Converts a non-negative integer to its ordinal representation by adding
+    the appropriate suffix (st, nd, rd, th) based on the number's ending.
+
+    Args:
+        number: The integer to convert to ordinal form. Negative numbers
+                are returned unchanged.
+
+    Returns:
+        Union[str, int]: Ordinal string for non-negative numbers, original
+                        integer for negative numbers.
+
+    Examples:
+        >>> convert_to_ordered_number(1)
+        '1st'
+        >>> convert_to_ordered_number(2)
+        '2nd'
+        >>> convert_to_ordered_number(3)
+        '3rd'
+        >>> convert_to_ordered_number(4)
+        '4th'
+        >>> convert_to_ordered_number(21)
+        '21st'
+        >>> convert_to_ordered_number(-5)
+        -5
+    """
     if number < 0:
         return number
 
@@ -21,6 +48,32 @@ def convert_to_ordered_number(number: int) -> Union[str, int]:
 
 
 def months_list() -> List[str]:
+    """Generate a comprehensive list of month representations.
+
+    Creates a list containing various formats of month names and numbers,
+    including individual months, combinations, and seasonal terms.
+
+    Returns:
+        List[str]: List of month representations including:
+                  - Single digit months (1-12)
+                  - Zero-padded months (01-12)
+                  - Full month names (January-December)
+                  - Abbreviated month names (Jan-Dec)
+                  - Alternative abbreviations (Sept)
+                  - Seasonal terms (spring, summer, fall, winter, quarter)
+                  - Combinations with hyphens and slashes
+
+    Examples:
+        >>> months = months_list()
+        >>> "January" in months
+        True
+        >>> "01" in months
+        True
+        >>> "spring" in months
+        True
+        >>> "jan-feb" in months
+        True
+    """
     month_contents_old, month_contents_new = [], []
 
     m1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
@@ -67,6 +120,35 @@ def months_list() -> List[str]:
 
 
 def months_dict(str_int: str = "str"):
+    """Create a dictionary mapping month names to their numeric representations.
+
+    Generates a comprehensive dictionary that maps various month name formats
+    to their corresponding string or integer representations.
+
+    Args:
+        str_int: Format for the output values. "str" returns string numbers,
+                "int" returns integer numbers, anything else returns empty dict.
+
+    Returns:
+        dict: Dictionary mapping month names (lowercase) to their numeric
+              representations. Keys include full names, abbreviations, and
+              numeric strings.
+
+    Examples:
+        >>> months = months_dict("str")
+        >>> months["january"]
+        '1'
+        >>> months["jan"]
+        '1'
+        >>> months["01"]
+        '1'
+
+        >>> months = months_dict("int")
+        >>> months["january"]
+        1
+        >>> months["december"]
+        12
+    """
     months = {
         'January': ['1', 1],
         'February': ['2', 2],
@@ -123,6 +205,29 @@ def months_dict(str_int: str = "str"):
 
 
 def convert_str_month_to_number_month(month: str) -> str:
+    """Convert month string to standardized month name.
+
+    Takes a month string in various formats and converts it to a standardized
+    title-case month name. Handles abbreviations, full names, and combinations.
+
+    Args:
+        month: Month string to convert. Can be in various formats like
+               "jan", "January", "01", "jan-feb", etc.
+
+    Returns:
+        str: Standardized month name in title case, or original string if
+             conversion fails.
+
+    Examples:
+        >>> convert_str_month_to_number_month("jan")
+        'January'
+        >>> convert_str_month_to_number_month("01")
+        'January'
+        >>> convert_str_month_to_number_month("jan-feb")
+        'January-February'
+        >>> convert_str_month_to_number_month("invalid")
+        'invalid'
+    """
     months = months_dict("str")
 
     month = month.strip()
