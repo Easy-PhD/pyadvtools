@@ -1,4 +1,5 @@
 import os
+import platform
 import re
 from typing import List, Optional, Union
 
@@ -10,6 +11,7 @@ def is_valid_filename(filename):
 
     Validates a filename against common file system restrictions including
     illegal characters, reserved patterns, and naming conventions.
+    Cross-platform compatible for Windows, macOS, and Linux.
 
     Args:
         filename: The filename to validate.
@@ -29,8 +31,19 @@ def is_valid_filename(filename):
     if not filename:
         return False
 
-    # Check for illegal characters: < > : " / \ | ? *
-    if any(char in filename for char in '<>:"/\\|?*'):
+    # Platform-specific illegal characters
+    system = platform.system().lower()
+    if system == "windows":
+        # Windows illegal characters: < > : " | ? * and control characters
+        illegal_chars = '<>:"|?*'
+        # Also check for control characters (ASCII 0-31)
+        if any(ord(char) < 32 for char in filename):
+            return False
+    else:
+        # Unix-like systems: only / and null character
+        illegal_chars = '/\0'
+
+    if any(char in filename for char in illegal_chars):
         return False
 
     # Check for hidden file without actual name (just '.')
@@ -48,6 +61,17 @@ def is_valid_filename(filename):
     # Check for consecutive spaces
     if '  ' in filename:
         return False
+
+    # Windows-specific: reserved names
+    if system == "windows":
+        reserved_names = {
+            'CON', 'PRN', 'AUX', 'NUL',
+            'COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9',
+            'LPT1', 'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9'
+        }
+        name_without_ext = filename.split('.')[0].upper()
+        if name_without_ext in reserved_names:
+            return False
 
     # Require file extension (at least one dot)
     if '.' not in filename:
@@ -86,8 +110,8 @@ def read_list(file_name: str, read_flag: str = "r", path_storage: Optional[str] 
     if not os.path.isfile(file_name) or not os.path.exists(file_name):
         return []
 
-    # Read file with UTF-8 encoding
-    with open(file_name, read_flag, encoding="utf-8") as f:
+    # Read file with UTF-8 encoding and cross-platform line ending handling
+    with open(file_name, read_flag, encoding="utf-8", newline=None) as f:
         # Read all lines preserving line endings
         data_list = f.read().splitlines(keepends=True)
 
@@ -175,8 +199,8 @@ def write_list(
             if not re.search("a", write_flag) and check and os.path.isfile(full_file_name):
                 print(f"{full_file_name} already exists and do nothing.")
             else:
-                # Write data to file
-                with open(full_file_name, write_flag, encoding="utf-8") as f:
+                # Write data to file with cross-platform line ending handling
+                with open(full_file_name, write_flag, encoding="utf-8", newline=None) as f:
                     f.writelines(new_data_list)
 
         # Delete original file if data is empty and flag is set

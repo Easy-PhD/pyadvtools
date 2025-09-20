@@ -155,10 +155,14 @@ def generate_nested_dict(path_storage: str) -> dict:
     for root, _, files in os.walk(path_storage, topdown=True):
         for file in files:
             # Create relative path key by removing root path prefix
-            f = "." + os.path.join(root, file).replace(path_storage, "")
+            # Use os.path.normpath for cross-platform path handling
+            relative_path = os.path.normpath(os.path.join(root, file))
+            relative_to_storage = os.path.relpath(relative_path, path_storage)
+            f = "." + os.path.sep + relative_to_storage
 
             # Group files by their relative directory path
-            files_dict.setdefault(root.replace(path_storage, ""), []).append(f)
+            relative_dir = os.path.relpath(root, path_storage)
+            files_dict.setdefault(relative_dir, []).append(f)
 
     # Sort file lists alphabetically for each directory
     files_dict = {k: sorted(v) for k, v in files_dict.items()}
