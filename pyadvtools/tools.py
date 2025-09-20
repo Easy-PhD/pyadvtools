@@ -173,7 +173,7 @@ def generate_nested_dict(path_storage: str) -> dict:
     # Convert flat directory structure to nested hierarchy
     for k, v in files_dict.items():
         # Split path into individual directory components
-        keys = Path(k).parts[1:]
+        keys = [k for k in Path(k).parts if k != os.sep]
 
         # Skip empty paths (root directory case)
         if not keys:
