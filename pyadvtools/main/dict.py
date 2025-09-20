@@ -14,7 +14,7 @@ class IterateSortDict(object):
     Attributes:
         reverse: If True, sorts keys in descending order.
     """
-    
+
     def __init__(self, reverse: bool = False) -> None:
         """Initialize the dictionary sorter.
 
@@ -71,7 +71,7 @@ class IterateUpdateDict(object):
     merging new values into existing structures while preserving nested
     dictionary hierarchies.
     """
-    
+
     def __init__(self) -> None:
         """Initialize the dictionary updater."""
         pass
@@ -198,7 +198,7 @@ if __name__ == "__main__":
     b = IterateSortDict().dict_update(a)
     print(b)  # {'a': {'c': ['cc'], 'e': {'d': ['dd']}}, 'b': ['bb']}
 
-    c = {'aa': ['111'], 'b': ['222']}
+    c = {"aa": ["111"], "b": ["222"]}
     cc = IterateUpdateDict().dict_update(a, c)
     print(cc)  # {'a': {'c': ['cc'], 'e': {'d': ['dd']}}, 'b': ['222'], 'aa': ['111']}
 

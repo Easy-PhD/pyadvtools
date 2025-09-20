@@ -71,7 +71,7 @@ def transform_to_data_list(
     is_standard_file_name: bool = True,
     search_year_list: List[str] = [],
     insert_flag: Union[List[str], str, None] = None,
-    before_after: str = "after"
+    before_after: str = "after",
 ) -> List[str]:
     """Transform input data from various formats into a unified list of strings.
 

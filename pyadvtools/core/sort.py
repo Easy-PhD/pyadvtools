@@ -100,7 +100,7 @@ def arg_sort_int_str(str_int: List[str], reverse: bool = False) -> List[int]:
 
 
 if __name__ == "__main__":
-    a = ['abc12.txt','abc9.txt','abc99.txt','abc100.txt','aaa999.txt','234.bat','detail.bat']
+    a = ["abc12.txt", "abc9.txt", "abc99.txt", "abc100.txt", "aaa999.txt", "234.bat", "detail.bat"]
     aa = sort_int_str(a)
     print("                :", a)
     print("sorted          :", sorted(a))

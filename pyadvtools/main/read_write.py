@@ -41,17 +41,17 @@ def is_valid_filename(filename):
             return False
     else:
         # Unix-like systems: only / and null character
-        illegal_chars = '/\0'
+        illegal_chars = "/\0"
 
     if any(char in filename for char in illegal_chars):
         return False
 
     # Check for hidden file without actual name (just '.')
-    if filename == '.':
+    if filename == ".":
         return False
 
     # Prevent directory traversal attacks
-    if '..' in filename:
+    if ".." in filename:
         return False
 
     # Check for leading or trailing spaces
@@ -59,22 +59,41 @@ def is_valid_filename(filename):
         return False
 
     # Check for consecutive spaces
-    if '  ' in filename:
+    if "  " in filename:
         return False
 
     # Windows-specific: reserved names
     if system == "windows":
         reserved_names = {
-            'CON', 'PRN', 'AUX', 'NUL',
-            'COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9',
-            'LPT1', 'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9'
+            "CON",
+            "PRN",
+            "AUX",
+            "NUL",
+            "COM1",
+            "COM2",
+            "COM3",
+            "COM4",
+            "COM5",
+            "COM6",
+            "COM7",
+            "COM8",
+            "COM9",
+            "LPT1",
+            "LPT2",
+            "LPT3",
+            "LPT4",
+            "LPT5",
+            "LPT6",
+            "LPT7",
+            "LPT8",
+            "LPT9",
         }
-        name_without_ext = filename.split('.')[0].upper()
+        name_without_ext = filename.split(".")[0].upper()
         if name_without_ext in reserved_names:
             return False
 
     # Require file extension (at least one dot)
-    if '.' not in filename:
+    if "." not in filename:
         return False
 
     return True
