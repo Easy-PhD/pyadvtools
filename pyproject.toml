@@ -6,9 +6,9 @@ license = "GPL-3.0-or-later"
 authors = ["NextAI <nextartifintell@gmail.com>"]
 maintainers = ["NextAI <nextartifintell@gmail.com>"]
 readme = ["README.md"]
-homepage = "https://github.com/NextArtifIntell/pyadvtools"
-repository = "https://github.com/NextArtifIntell/pyadvtools"
-documentation = "https://github.com/NextArtifIntell/pyadvtools"
+homepage = "https://github.com/Easy-PhD/pyadvtools"
+repository = "https://github.com/Easy-PhD/pyadvtools"
+documentation = "https://github.com/Easy-PhD/pyadvtools"
 keywords = ["Python"]
 classifiers = ["Topic :: Software Development :: Libraries :: Python Modules"]
 
