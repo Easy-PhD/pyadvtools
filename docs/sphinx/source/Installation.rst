@@ -13,5 +13,3 @@ Pip via Python Package Index (PyPI)
 .. code-block:: bash
 
    pip install pyadvtools
-
-Installation
