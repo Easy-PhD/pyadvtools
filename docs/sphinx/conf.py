@@ -12,9 +12,6 @@ sys.path.insert(0, SPHINX)
 DOCS = os.path.dirname(SPHINX)
 sys.path.insert(0, DOCS)
 
-ROOT = os.path.dirname(DOCS)
-sys.path.insert(0, ROOT)
-
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
