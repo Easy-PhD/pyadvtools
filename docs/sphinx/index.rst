@@ -15,5 +15,5 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-   installation
-   api
+   source/installation
+   source/api
