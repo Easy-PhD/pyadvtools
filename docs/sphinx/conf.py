@@ -24,15 +24,7 @@ version = '.'.join(release.split('.')[:2])
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
               'sphinx.ext.viewcode',
-              'sphinx_copybutton',
-              'sphinx.ext.autosummary']
-
-autosummary_generate = True
-autodoc_default_options = {
-    'members': True,
-    'undoc-members': True,
-    'show-inheritance': True,
-}
+              'sphinx_copybutton',]
 
 # Napoleon settings
 napoleon_google_docstring = True
