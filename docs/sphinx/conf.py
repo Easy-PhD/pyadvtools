@@ -6,16 +6,10 @@
 import os
 import sys
 from importlib.metadata import version
-from os.path import dirname
 
-SOURCE = os.path.join(os.path.dirname(os.path.realpath(__file__)), "source")
-sys.path.insert(0, SOURCE)
+sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
 
-SPHINX = os.path.dirname(SOURCE)
-sys.path.insert(0, SPHINX)
-
-ROOT = dirname(SPHINX)
-sys.path.insert(0, ROOT)
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -27,7 +21,7 @@ copyright = '2025, NextAI'
 try:
     release = version('pyadvtools')
 except Exception:
-    release = '0.0.1'
+    release = '0.1.0'
 version = '.'.join(release.split('.')[:2])
 
 # -- General configuration ---------------------------------------------------
