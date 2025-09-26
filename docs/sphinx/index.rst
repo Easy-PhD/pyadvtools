@@ -16,4 +16,3 @@ documentation for details.
    :caption: Contents:
 
    source/installation
-   source/api
