@@ -14,6 +14,9 @@ Pip via Python Package Index (PyPI)
 
    pip install pyadvtools
 
+For MATLAB Users
+----------------
+
 For **Virtual Environment**, please refer to e.g. `venv's online document
 <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_
 for its necessary details. In the development stage, using the virtual
