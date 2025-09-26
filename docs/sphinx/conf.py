@@ -5,14 +5,9 @@
 
 import os
 import sys
+from importlib.metadata import version
 
-SPHINX = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, SPHINX)
-
-DOCS = os.path.dirname(SPHINX)
-sys.path.insert(0, DOCS)
-
-ROOT = os.path.dirname(DOCS)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 # -- Project information -----------------------------------------------------
@@ -21,7 +16,12 @@ sys.path.insert(0, ROOT)
 project = 'pyadvtools'
 copyright = '2025, NextAI'
 author = 'NextAI'
-release = 'GPL-3.0-or-later'
+
+try:
+    release = version('pyadvtools')
+except Exception:
+    release = '0.0.1'
+version = '.'.join(release.split('.')[:2])
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -36,6 +36,9 @@ extensions = ['sphinx.ext.autodoc',
 # Napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+napoleon_include_init_with_doc = True
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -45,7 +48,7 @@ templates_path = ['_templates']
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'Python'
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
