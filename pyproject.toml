@@ -16,6 +16,14 @@ classifiers = ["Topic :: Software Development :: Libraries :: Python Modules"]
 python = ">=3.12"
 
 [tool.poetry.group.dev.dependencies]
+mypy = "^1.18.2"
+ruff = "^0.13.1"
+pycodestyle = "^2.14.0"
+pydocstyle = "^6.3.0"
+flake8 = "^7.3.0"
+isort = "^6.0.1"
+black = "^25.9.0"
+pyright = "^1.1.405"
 sphinx = "^8.2.3"
 sphinx-rtd-theme = "^3.0.2"
 sphinx-copybutton = "^0.5.2"

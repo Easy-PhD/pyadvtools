@@ -3,7 +3,19 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
+import sys
 from importlib.metadata import version
+from os.path import dirname
+
+SOURCE = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, SOURCE)
+
+SPHINX = os.path.dirname(SOURCE)
+sys.path.insert(0, SPHINX)
+
+ROOT = dirname(SPHINX)
+sys.path.insert(0, ROOT)
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
