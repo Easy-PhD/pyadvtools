@@ -10,8 +10,6 @@ from importlib.metadata import version
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'source'))
-
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -31,16 +29,12 @@ version = '.'.join(release.split('.')[:2])
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
               'sphinx.ext.viewcode',
-              'sphinx_copybutton',
-              'rst2pdf.pdfbuilder']
+              'sphinx_copybutton']
 
 
 # Napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
-napoleon_include_init_with_doc = True
-napoleon_include_private_with_doc = False
-napoleon_include_special_with_doc = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
