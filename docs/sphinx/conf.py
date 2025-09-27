@@ -25,7 +25,7 @@ def get_version() -> str:
     """Get project version, preferentially from installed package."""
     # Method 1: Try to read from installed package
     try:
-        return metadata_version("pybibtexer")
+        return metadata_version("pyadvtools")
     except (PackageNotFoundError, ImportError):
         pass
 
