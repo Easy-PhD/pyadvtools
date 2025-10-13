@@ -18,6 +18,7 @@ __all__ = [
     "arg_sorted",
     "sort_int_str",
     "standard_path",
+    "GitAutoCommitter",
     "IterateCombineExtendDict",
     "IterateSortDict",
     "IterateUpdateDict",
@@ -50,6 +51,7 @@ from pyadvtools.core.delete import (
 from pyadvtools.core.print import print_run_time
 from pyadvtools.core.sort import arg_sort_int_str, arg_sorted, sort_int_str
 from pyadvtools.core.standard import standard_path
+from pyadvtools.main.auto_git import GitAutoCommitter
 from pyadvtools.main.dict import IterateCombineExtendDict, IterateSortDict, IterateUpdateDict
 from pyadvtools.main.list import (
     combine_content_in_list,
