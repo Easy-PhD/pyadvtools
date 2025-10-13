@@ -48,6 +48,62 @@ class GitAutoCommitter:
         finally:
             os.chdir(self.original_dir)
 
+    def auto_check(self, remote="origin", branch=None):
+        """
+        Check if local repository is in sync with remote repository.
+
+        Args:
+            remote (str): Remote repository name (default: "origin")
+            branch (str): Branch name to check. If None, uses current branch.
+
+        Returns:
+            bool: True if local and remote are in sync, False if there are differences
+        """
+        if not self.check_git_repo():
+            print(f"Error: {self.repo_path} is not a Git repository")
+            return False
+
+        try:
+            os.chdir(self.repo_path)
+
+            # Get current branch if not specified
+            if branch is None:
+                branch_result = subprocess.run(
+                    ["git", "branch", "--show-current"],
+                    capture_output=True, text=True, check=True
+                )
+                branch = branch_result.stdout.strip()
+
+            # Fetch latest remote information
+            subprocess.run(["git", "fetch", remote], check=True, capture_output=True)
+
+            # Compare local and remote commits
+            local_ref = f"refs/heads/{branch}"
+            remote_ref = f"refs/remotes/{remote}/{branch}"
+
+            # Get commit hashes
+            local_hash = subprocess.run(
+                ["git", "rev-parse", local_ref],
+                capture_output=True, text=True, check=True
+            ).stdout.strip()
+
+            remote_hash = subprocess.run(
+                ["git", "rev-parse", remote_ref],
+                capture_output=True, text=True, check=True
+            ).stdout.strip()
+
+            # Return True if hashes are identical
+            return local_hash == remote_hash
+
+        except subprocess.CalledProcessError as e:
+            print(f"Error checking repository sync: {e}")
+            return False
+        except Exception as e:
+            print(f"Unexpected error during sync check: {e}")
+            return False
+        finally:
+            os.chdir(self.original_dir)
+
     def auto_pull(self, remote="origin", branch=None):
         """
         Automatically pull the latest changes from the remote repository.
