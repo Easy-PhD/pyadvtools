@@ -26,7 +26,8 @@ jobs:
         run: npm install -g conventional-changelog conventional-changelog-angular
 
       - name: Generate changelog
-        run: conventional-changelog -p angular -i CHANGELOG.md -s -r 0
+        # run: conventional-changelog -p angular -i CHANGELOG.md -s -r 0
+        run: conventional-changelog -p angular -i CHANGELOG.md -s
 
       # - name: Commit changelog
       #   run: |
