@@ -5,7 +5,7 @@ import re
 from pyadvtools.core.delete import delete_empty_lines_first_occur, delete_empty_lines_last_occur_add_new_line
 
 
-def is_valid_filename(filename):
+def is_valid_filename(filename: str) -> bool:
     """Check if a filename is valid for common file systems.
 
     Validates a filename against common file system restrictions including

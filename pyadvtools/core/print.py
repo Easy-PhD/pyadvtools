@@ -1,8 +1,9 @@
 import time
+from collections.abc import Callable
 from functools import wraps
 
 
-def print_run_time(func):
+def print_run_time(func: Callable):
     """Decorator to measure and print function execution time.
 
     A decorator that wraps a function to measure its execution time and

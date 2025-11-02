@@ -20,7 +20,7 @@ class GitAutoCommitter:
         self.repo_path = Path(repo_path).resolve()
         self.original_dir = Path.cwd()
 
-    def check_git_repo(self):
+    def check_git_repo(self) -> bool:
         """Check if the given path is a valid Git repository.
 
         Returns:
@@ -29,7 +29,7 @@ class GitAutoCommitter:
         git_dir = self.repo_path / ".git"
         return git_dir.exists() and git_dir.is_dir()
 
-    def has_changes(self):
+    def has_changes(self) -> bool:
         """Check if there are uncommitted changes in the repository.
 
         Returns:
@@ -45,7 +45,7 @@ class GitAutoCommitter:
         finally:
             os.chdir(self.original_dir)
 
-    def auto_check(self, remote="origin", branch=None):
+    def auto_check(self, remote="origin", branch=None) -> bool:
         """Check if local repository is in sync with remote repository.
 
         Args:
@@ -100,7 +100,7 @@ class GitAutoCommitter:
         finally:
             os.chdir(self.original_dir)
 
-    def auto_pull(self, remote="origin", branch=None):
+    def auto_pull(self, remote="origin", branch=None) -> bool:
         """Automatically pull the latest changes from the remote repository.
 
         Args:
@@ -150,7 +150,7 @@ class GitAutoCommitter:
         finally:
             os.chdir(self.original_dir)
 
-    def auto_commit(self, commit_message=None):
+    def auto_commit(self, commit_message=None) -> bool:
         """Automatically commit changes using direct Git commands.
 
         Args:
@@ -193,7 +193,7 @@ class GitAutoCommitter:
         finally:
             os.chdir(self.original_dir)
 
-    def auto_push(self, remote="origin", branch="main"):
+    def auto_push(self, remote="origin", branch="main") -> bool:
         """Automatically push to remote repository.
 
         Args:

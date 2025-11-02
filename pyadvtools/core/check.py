@@ -1,4 +1,7 @@
-def is_empty(x) -> bool:
+from typing import Any
+
+
+def is_empty(x: Any) -> bool:
     """Check whether the input is empty.
 
     Determines if the input value is considered empty based on various criteria:

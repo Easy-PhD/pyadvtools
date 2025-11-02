@@ -23,7 +23,7 @@ class IterateSortDict:
         """
         self.reverse = reverse
 
-    def dict_update(self, old):
+    def dict_update(self, old: dict) -> dict:
         """Update and sort a dictionary recursively.
 
         Sorts the dictionary keys at all levels using natural string ordering.
@@ -38,7 +38,7 @@ class IterateSortDict:
         old = self.dict_sort(old)
         return old
 
-    def dict_sort_iteration(self, old: dict):
+    def dict_sort_iteration(self, old: dict) -> dict:
         """Recursively sort nested dictionary keys.
 
         Args:
@@ -52,7 +52,7 @@ class IterateSortDict:
                 old[key] = self.dict_update(old[key])
         return old
 
-    def dict_sort(self, old: dict):
+    def dict_sort(self, old: dict) -> dict:
         """Sort dictionary keys using natural string ordering.
 
         Args:
