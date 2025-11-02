@@ -1,7 +1,6 @@
 import os
 import re
 from pathlib import Path
-from typing import List, Union
 
 from pyadvtools.core.sort import sort_int_str
 from pyadvtools.core.standard import standard_path
@@ -15,8 +14,8 @@ def iterate_obtain_full_file_names(
     extension: str,
     reverse: bool = True,
     is_standard_file_name: bool = True,
-    search_year_list: List[str] = [],
-) -> List[str]:
+    search_year_list: list[str] = [],
+) -> list[str]:
     """Recursively retrieve full file paths with specified extension.
 
     Walks through a directory tree and collects files matching the given
@@ -65,15 +64,15 @@ def iterate_obtain_full_file_names(
 
 
 def transform_to_data_list(
-    original_data: Union[List[str], str],
+    original_data: list[str] | str,
     extension: str,
     reverse: bool = False,
     is_standard_file_name: bool = True,
-    search_year_list: List[str] = [],
-    insert_flag: Union[List[str], str, None] = None,
+    search_year_list: list[str] = [],
+    insert_flag: list[str] | str | None = None,
     before_after: str = "after",
-) -> List[str]:
-    """Transform input data from various formats into a unified list of strings.
+) -> list[str]:
+    r"""Transform input data from various formats into a unified list of strings.
 
     Supports multiple input types including directories, files, raw strings,
     and string lists, returning a consolidated list of text lines.

@@ -1,8 +1,7 @@
 import re
-from typing import List, Union
 
 
-def convert_to_ordered_number(number: int) -> Union[str, int]:
+def convert_to_ordered_number(number: int) -> str | int:
     """Convert an integer to its ordinal form (1st, 2nd, 3rd, etc.).
 
     Converts a non-negative integer to its ordinal representation by adding
@@ -47,7 +46,7 @@ def convert_to_ordered_number(number: int) -> Union[str, int]:
     return f"{number}rd"
 
 
-def months_list() -> List[str]:
+def months_list() -> list[str]:
     """Generate a comprehensive list of month representations.
 
     Creates a list containing various formats of month names and numbers,
@@ -55,13 +54,13 @@ def months_list() -> List[str]:
 
     Returns:
         List[str]: List of month representations including:
-                  - Single digit months (1-12)
-                  - Zero-padded months (01-12)
-                  - Full month names (January-December)
-                  - Abbreviated month names (Jan-Dec)
-                  - Alternative abbreviations (Sept)
-                  - Seasonal terms (spring, summer, fall, winter, quarter)
-                  - Combinations with hyphens and slashes
+            - Single digit months (1-12)
+            - Zero-padded months (01-12)
+            - Full month names (January-December)
+            - Abbreviated month names (Jan-Dec)
+            - Alternative abbreviations (Sept)
+            - Seasonal terms (spring, summer, fall, winter, quarter)
+            - Combinations with hyphens and slashes
 
     Examples:
         >>> months = months_list()
@@ -119,7 +118,7 @@ def months_list() -> List[str]:
     return month_contents
 
 
-def months_dict(str_int: str = "str"):
+def months_dict(str_int: str = "str") -> dict:
     """Create a dictionary mapping month names to their numeric representations.
 
     Generates a comprehensive dictionary that maps various month name formats

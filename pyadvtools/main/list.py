@@ -1,14 +1,13 @@
 import re
-from typing import List, Union
 
 from pyadvtools.core.check import is_list_contain_list_contain_str, is_list_contain_str
 
 
 def combine_content_in_list(
-    data_list: Union[List[str], List[List[str]]],
-    insert_flag: Union[List[str], str, None] = None,
+    data_list: list[str] | list[list[str]],
+    insert_flag: list[str] | str | None = None,
     before_after: str = "after",
-) -> List[str]:
+) -> list[str]:
     """Combine content in list with optional insertion flags.
 
     Combines content from a list of strings or list of string lists,
@@ -63,12 +62,12 @@ def combine_content_in_list(
 
 
 def insert_list_in_list(
-    data_list: List[str],
-    insert_content_list: List[str],
-    insert_flag: Union[int, str],
+    data_list: list[str],
+    insert_content_list: list[str],
+    insert_flag: int | str,
     insert_before_after: str = "after",
     insert_times: float = 1,
-) -> List[str]:
+) -> list[str]:
     """Insert content into a list at specified positions.
 
     Inserts a list of content into another list either at a specific index
@@ -122,8 +121,8 @@ def insert_list_in_list(
 
 
 def pairwise_combine_in_list(
-    data_list_list_one: List[List[str]], data_list_list_two: List[List[str]], mid_flag: Union[str, list] = "\n"
-) -> List[List[str]]:
+    data_list_list_one: list[list[str]], data_list_list_two: list[list[str]], mid_flag: str | list = "\n"
+) -> list[list[str]]:
     """Pairwise combine two lists of lists.
 
     Combines corresponding lists from two list-of-lists structures.
@@ -153,7 +152,7 @@ def pairwise_combine_in_list(
         mid_flag = [mid_flag]
 
     new_list_list = []
-    for i, j in zip(data_list_list_one, data_list_list_two):
+    for i, j in zip(data_list_list_one, data_list_list_two, strict=True):
         new_list = []
         new_list.extend(i)
         new_list.extend(j)
@@ -161,7 +160,7 @@ def pairwise_combine_in_list(
     return new_list_list
 
 
-def substitute_in_list(old_list: List[str], new_list: List[str], data_list: List[str]) -> List[str]:
+def substitute_in_list(old_list: list[str], new_list: list[str], data_list: list[str]) -> list[str]:
     """Substitute patterns in list elements.
 
     Performs regex substitutions on each element of a list, replacing
@@ -186,7 +185,7 @@ def substitute_in_list(old_list: List[str], new_list: List[str], data_list: List
 
     new_data_list = []
     for line in data_list:
-        for i, j in zip(old_list, new_list):
+        for i, j in zip(old_list, new_list, strict=True):
             line = re.sub(i, j, line)
         new_data_list.append(line)
     return new_data_list

@@ -1,9 +1,8 @@
 import os
 import shutil
-from typing import List
 
 
-def delete_files(path_storage: str, extensions: List[str]) -> None:
+def delete_files(path_storage: str, extensions: list[str]) -> None:
     """Delete files with specified extensions from a directory.
 
     Removes all files in the given directory that have any of the specified
@@ -32,7 +31,7 @@ def delete_files(path_storage: str, extensions: List[str]) -> None:
                 os.remove(os.path.join(path_storage, name))
 
 
-def delete_empty_lines(data_list: List[str]) -> List[str]:
+def delete_empty_lines(data_list: list[str]) -> list[str]:
     """Remove all empty lines from a list of strings.
 
     Filters out lines that are empty or contain only whitespace characters,
@@ -53,7 +52,7 @@ def delete_empty_lines(data_list: List[str]) -> List[str]:
     return [line for line in data_list if line.strip()]
 
 
-def delete_empty_lines_first_occur(data_list: List[str]) -> List[str]:
+def delete_empty_lines_first_occur(data_list: list[str]) -> list[str]:
     """Remove empty lines from the beginning of a list.
 
     Removes consecutive empty lines from the start of the list until the
@@ -80,8 +79,8 @@ def delete_empty_lines_first_occur(data_list: List[str]) -> List[str]:
     return []
 
 
-def delete_empty_lines_last_occur_add_new_line(data_list: List[str]) -> List[str]:
-    """Remove trailing empty lines and ensure proper newline ending.
+def delete_empty_lines_last_occur_add_new_line(data_list: List[str]) -> list[str]:
+    r"""Remove trailing empty lines and ensure proper newline ending.
 
     Removes empty lines from the end of the list and ensures the last
     line ends with a newline character. Cross-platform compatible.
@@ -133,7 +132,7 @@ def delete_python_cache(path_root: str) -> None:
                 shutil.rmtree(os.path.join(root, folder))
 
 
-def delete_redundant_elements(element_list: List[str]) -> List[str]:
+def delete_redundant_elements(element_list: list[str]) -> list[str]:
     """Remove duplicate elements while preserving order.
 
     Removes duplicate elements from the list while maintaining the original
@@ -155,7 +154,3 @@ def delete_redundant_elements(element_list: List[str]) -> List[str]:
     """
     new_element_list = [e.strip() for e in element_list if e.strip()]
     return sorted(set(new_element_list), key=new_element_list.index)
-
-
-if __name__ == "__main__":
-    pass

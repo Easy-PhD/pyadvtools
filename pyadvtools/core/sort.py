@@ -1,8 +1,7 @@
 import re
-from typing import List
 
 
-def arg_sorted(elements: list, reverse: bool = False) -> List[int]:
+def arg_sorted(elements: list, reverse: bool = False) -> list[int]:
     """Return indices that would sort the list.
 
     Returns the indices of elements in the order they would appear
@@ -24,7 +23,7 @@ def arg_sorted(elements: list, reverse: bool = False) -> List[int]:
     return sorted(range(len(elements)), key=lambda k: elements[k], reverse=reverse)
 
 
-def sort_strings_with_embedded_numbers(s: str) -> List[str]:
+def sort_strings_with_embedded_numbers(s: str) -> list[str]:
     """Split string into parts for natural sorting with embedded numbers.
 
     Splits a string into alternating text and numeric parts, converting
@@ -48,7 +47,7 @@ def sort_strings_with_embedded_numbers(s: str) -> List[str]:
     return pieces
 
 
-def sort_int_str(str_int: List[str], reverse: bool = False) -> List[str]:
+def sort_int_str(str_int: list[str], reverse: bool = False) -> list[str]:
     """Sort strings with natural numeric ordering.
 
     Sorts a list of strings using natural ordering where embedded numbers
@@ -70,7 +69,7 @@ def sort_int_str(str_int: List[str], reverse: bool = False) -> List[str]:
     return sorted(str_int, key=sort_strings_with_embedded_numbers, reverse=reverse)
 
 
-def arg_sort_int_str(str_int: List[str], reverse: bool = False) -> List[int]:
+def arg_sort_int_str(str_int: list[str], reverse: bool = False) -> list[int]:
     """Return indices for natural sorting of strings with embedded numbers.
 
     Returns the indices of strings in the order they would appear

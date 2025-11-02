@@ -1,7 +1,6 @@
 import os
 import platform
 import re
-from typing import List, Optional, Union
 
 from pyadvtools.core.delete import delete_empty_lines_first_occur, delete_empty_lines_last_occur_add_new_line
 
@@ -99,8 +98,8 @@ def is_valid_filename(filename):
     return True
 
 
-def read_list(file_name: str, read_flag: str = "r", path_storage: Optional[str] = None) -> List[str]:
-    """Read a text file and return its content as a list of lines.
+def read_list(file_name: str, read_flag: str = "r", path_storage: str | None = None) -> list[str]:
+    r"""Read a text file and return its content as a list of lines.
 
     Reads a text file and returns its content as a list of strings,
     with proper handling of file paths, existence checks, and content
@@ -139,10 +138,10 @@ def read_list(file_name: str, read_flag: str = "r", path_storage: Optional[str] 
 
 
 def write_list(
-    data_list: Union[List[str], List[bytes]],
+    data_list: list[str] | list[bytes],
     file_name: str,
     write_flag: str = "w",
-    path_storage: Optional[str] = None,
+    path_storage: str | None = None,
     check: bool = True,
     delete_first_empty: bool = True,
     delete_last_empty: bool = True,

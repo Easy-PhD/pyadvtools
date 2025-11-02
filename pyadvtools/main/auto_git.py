@@ -12,8 +12,7 @@ class GitAutoCommitter:
     """
 
     def __init__(self, repo_path):
-        """
-        Initialize the auto-committer with a repository path.
+        """Initialize the auto-committer with a repository path.
 
         Args:
             repo_path (str): Path to the Git repository
@@ -22,8 +21,7 @@ class GitAutoCommitter:
         self.original_dir = Path.cwd()
 
     def check_git_repo(self):
-        """
-        Check if the given path is a valid Git repository.
+        """Check if the given path is a valid Git repository.
 
         Returns:
             bool: True if it's a Git repository, False otherwise
@@ -32,8 +30,7 @@ class GitAutoCommitter:
         return git_dir.exists() and git_dir.is_dir()
 
     def has_changes(self):
-        """
-        Check if there are uncommitted changes in the repository.
+        """Check if there are uncommitted changes in the repository.
 
         Returns:
             bool: True if there are changes, False otherwise
@@ -49,8 +46,7 @@ class GitAutoCommitter:
             os.chdir(self.original_dir)
 
     def auto_check(self, remote="origin", branch=None):
-        """
-        Check if local repository is in sync with remote repository.
+        """Check if local repository is in sync with remote repository.
 
         Args:
             remote (str): Remote repository name (default: "origin")
@@ -105,8 +101,7 @@ class GitAutoCommitter:
             os.chdir(self.original_dir)
 
     def auto_pull(self, remote="origin", branch=None):
-        """
-        Automatically pull the latest changes from the remote repository.
+        """Automatically pull the latest changes from the remote repository.
 
         Args:
             remote (str): Remote repository name (default: "origin")
@@ -156,8 +151,7 @@ class GitAutoCommitter:
             os.chdir(self.original_dir)
 
     def auto_commit(self, commit_message=None):
-        """
-        Automatically commit changes using direct Git commands.
+        """Automatically commit changes using direct Git commands.
 
         Args:
             commit_message (str, optional): Commit message. If None, uses auto-generated message.
@@ -200,8 +194,7 @@ class GitAutoCommitter:
             os.chdir(self.original_dir)
 
     def auto_push(self, remote="origin", branch="main"):
-        """
-        Automatically push to remote repository.
+        """Automatically push to remote repository.
 
         Args:
             remote (str): Remote repository name (default: "origin")

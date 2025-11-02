@@ -1,10 +1,10 @@
 import copy
-from typing import Any, Dict, List
+from typing import Any
 
 from pyadvtools.core.sort import sort_int_str
 
 
-class IterateSortDict(object):
+class IterateSortDict:
     """Recursively sort dictionary keys using natural string ordering.
 
     This class provides functionality to recursively sort dictionary keys
@@ -64,7 +64,7 @@ class IterateSortDict(object):
         return {k: old[k] for k in sort_int_str(list(old.keys()), self.reverse)}
 
 
-class IterateUpdateDict(object):
+class IterateUpdateDict:
     """Recursively update nested dictionaries.
 
     This class provides functionality to recursively update nested dictionaries,
@@ -133,7 +133,7 @@ class IterateUpdateDict(object):
         return old
 
 
-class IterateCombineExtendDict(object):
+class IterateCombineExtendDict:
     """Combine and extend nested dictionaries with list values.
 
     This class processes nested dictionaries where the deepest level contains
@@ -144,7 +144,7 @@ class IterateCombineExtendDict(object):
         """Initialize the dictionary combiner."""
         pass
 
-    def dict_update(self, data_dict: Dict[str, Any]) -> List[Any]:
+    def dict_update(self, data_dict: dict[str, Any]) -> list[Any]:
         """Update and combine nested dictionary lists.
 
         Processes a nested dictionary structure and combines all list values
@@ -160,7 +160,7 @@ class IterateCombineExtendDict(object):
         data_list = self.data_combine(data_dict)
         return data_list
 
-    def dict_update_iteration(self, old: Dict[str, Any]) -> Dict[str, Any]:
+    def dict_update_iteration(self, old: dict[str, Any]) -> dict[str, Any]:
         """Recursively process nested dictionary structure.
 
         Args:
@@ -175,7 +175,7 @@ class IterateCombineExtendDict(object):
         return old
 
     @staticmethod
-    def data_combine(old: Dict[str, Any]) -> List[Any]:
+    def data_combine(old: dict[str, Any]) -> list[Any]:
         """Combine all list values from dictionary.
 
         Args:

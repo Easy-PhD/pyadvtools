@@ -1,14 +1,11 @@
-from typing import Any, List
-
-
-def is_empty(x: Any) -> bool:
+def is_empty(x) -> bool:
     """Check whether the input is empty.
 
     Determines if the input value is considered empty based on various criteria:
-    - Empty strings (after stripping whitespace)
-    - Collections with zero length (lists, dicts, tuples)
-    - None values
-    - False boolean values
+        - Empty strings (after stripping whitespace)
+        - Collections with zero length (lists, dicts, tuples)
+        - None values
+        - False boolean values
 
     Args:
         x: The value to check for emptiness. Can be any type.
@@ -39,7 +36,7 @@ def is_empty(x: Any) -> bool:
     return False
 
 
-def is_list_contain_str(xx: List[Any]) -> bool:
+def is_list_contain_str(xx: list) -> bool:
     """Check if all elements in the list are strings.
 
     Verifies that every element in the provided list is of string type.
@@ -58,10 +55,10 @@ def is_list_contain_str(xx: List[Any]) -> bool:
         >>> is_list_contain_str([])
         True
     """
-    return all([isinstance(x, str) for x in xx])
+    return all(isinstance(x, str) for x in xx)
 
 
-def is_list_contain_list_contain_str(xxx: List[Any]) -> bool:
+def is_list_contain_list_contain_str(xxx: list) -> bool:
     """Check if all nested lists contain only strings.
 
     Verifies that the input is a list of lists, where each inner list
@@ -81,8 +78,4 @@ def is_list_contain_list_contain_str(xxx: List[Any]) -> bool:
         >>> is_list_contain_list_contain_str([])
         True
     """
-    return all([is_list_contain_str(xx) for xx in xxx])
-
-
-if __name__ == "__main__":
-    pass
+    return all(is_list_contain_str(xx) for xx in xxx)
