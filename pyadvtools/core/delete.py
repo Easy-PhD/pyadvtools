@@ -79,7 +79,7 @@ def delete_empty_lines_first_occur(data_list: list[str]) -> list[str]:
     return []
 
 
-def delete_empty_lines_last_occur_add_new_line(data_list: List[str]) -> list[str]:
+def delete_empty_lines_last_occur_add_new_line(data_list: list[str]) -> list[str]:
     r"""Remove trailing empty lines and ensure proper newline ending.
 
     Removes empty lines from the end of the list and ensures the last
@@ -154,3 +154,7 @@ def delete_redundant_elements(element_list: list[str]) -> list[str]:
     """
     new_element_list = [e.strip() for e in element_list if e.strip()]
     return sorted(set(new_element_list), key=new_element_list.index)
+
+
+if __name__ == "__main__":
+    pass

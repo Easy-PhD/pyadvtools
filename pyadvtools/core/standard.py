@@ -49,3 +49,7 @@ def standard_path(p: str) -> str:
 
     # Normalize path separators for cross-platform compatibility
     return os.path.normpath(expanded_path)
+
+
+if __name__ == "__main__":
+    pass

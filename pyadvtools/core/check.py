@@ -79,3 +79,7 @@ def is_list_contain_list_contain_str(xxx: list) -> bool:
         True
     """
     return all(is_list_contain_str(xx) for xx in xxx)
+
+
+if __name__ == "__main__":
+    pass
