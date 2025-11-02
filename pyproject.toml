@@ -1,6 +1,6 @@
 [project]
 name = "pyadvtools"
-version = "0.3.0"
+version = "0.3.1"
 description = "pyadvtools"
 license = {text = "GPL-3.0-or-later"}
 license-files = ["LICENSE"]
