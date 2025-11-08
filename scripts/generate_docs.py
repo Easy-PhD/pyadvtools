@@ -102,7 +102,7 @@ class DocGenerator:
         # Ensure directory exists
         filepath.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(filepath, "w", encoding="utf-8") as f:
+        with open(filepath, "w", encoding="utf-8", newline="\n") as f:
             f.write(content)
 
         print(f"✓ Generated documentation: {filepath}")
