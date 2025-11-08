@@ -83,7 +83,7 @@ def delete_empty_lines_last_occur_add_new_line(data_list: list[str]) -> list[str
     r"""Remove trailing empty lines and ensure proper newline ending.
 
     Removes empty lines from the end of the list and ensures the last
-    line ends with a newline character. Cross-platform compatible.
+    line ends with a newline character.
 
     Args:
         data_list: List of strings to process.
@@ -97,13 +97,9 @@ def delete_empty_lines_last_occur_add_new_line(data_list: list[str]) -> list[str
         >>> result
         ['hello', 'world\n']
     """
-    import os
-
     data_list = delete_empty_lines_first_occur(data_list[::-1])[::-1]
     if data_list:
-        # Use os.linesep for cross-platform newline handling
-        newline = os.linesep
-        data_list[-1] = f"{data_list[-1].rstrip()}{newline}"
+        data_list[-1] = f"{data_list[-1].rstrip()}\n"
     return data_list
 
 

@@ -103,7 +103,8 @@ def read_list(file_name: str, read_flag: str = "r", path_storage: str | None = N
 
     Reads a text file and returns its content as a list of strings,
     with proper handling of file paths, existence checks, and content
-    formatting.
+    formatting. Uses Unix-style line endings (\n) consistently across
+    all platforms.
 
     Args:
         file_name: Name of the file to read.
@@ -111,14 +112,19 @@ def read_list(file_name: str, read_flag: str = "r", path_storage: str | None = N
         path_storage: Optional directory path to prepend to file_name.
 
     Returns:
-        List[str]: List of file lines with proper formatting, or empty list
-                  if file doesn't exist.
+        List[str]: List of file lines with Unix-style line endings (\n),
+                  or empty list if file doesn't exist.
 
     Examples:
         >>> read_list("test.txt")
         ['line1\n', 'line2\n']
         >>> read_list("nonexistent.txt")
         []
+
+    Note:
+        This function enforces Unix-style line endings (\n) regardless
+        of the host operating system. All line endings are normalized
+        to \n during reading.
     """
     # Construct full path if storage directory is provided
     if path_storage is not None:
@@ -128,10 +134,10 @@ def read_list(file_name: str, read_flag: str = "r", path_storage: str | None = N
     if not os.path.isfile(file_name) or not os.path.exists(file_name):
         return []
 
-    # Read file with UTF-8 encoding and cross-platform line ending handling
-    with open(file_name, read_flag, encoding="utf-8", newline=None) as f:
+    # Read file with UTF-8 encoding and Unix-style line ending handling
+    with open(file_name, read_flag, encoding="utf-8", newline="\n") as f:
         # Read all lines preserving line endings
-        data_list = f.read().splitlines(keepends=True)
+        data_list = f.readlines()
 
     # Clean up empty lines and ensure proper formatting
     return delete_empty_lines_last_occur_add_new_line(data_list)
@@ -148,10 +154,11 @@ def write_list(
     compulsory: bool = False,
     delete_original_file: bool = False,
 ) -> None:
-    """Write data to a file with comprehensive file handling.
+    r"""Write data to a file with comprehensive file handling.
 
     Writes a list of strings or bytes to a file with extensive options
-    for file handling, validation, and content processing.
+    for file handling, validation, and content processing. Enforces
+    Unix-style line endings (\n) for text files across all platforms.
 
     Args:
         data_list: List of strings or bytes to write.
@@ -169,7 +176,13 @@ def write_list(
 
     Examples:
         >>> write_list(["line1", "line2"], "output.txt")
-        # Writes lines to output.txt
+        # Writes lines to output.txt with Unix-style line endings
+
+    Note:
+        - Text files are always written with Unix-style line endings (\n)
+          regardless of the host operating system
+        - Binary files are written as-is without line ending conversion
+        - Empty line removal occurs before line ending normalization
     """
     # Validate filename
     name = os.path.basename(file_name)
@@ -217,8 +230,8 @@ def write_list(
             if not re.search("a", write_flag) and check and os.path.isfile(full_file_name):
                 print(f"{full_file_name} already exists and do nothing.")
             else:
-                # Write data to file with cross-platform line ending handling
-                with open(full_file_name, write_flag, encoding="utf-8", newline=None) as f:
+                # Write data to file with Unix-style line ending handling
+                with open(full_file_name, write_flag, encoding="utf-8", newline="\n") as f:
                     f.writelines(new_data_list)
 
         # Delete original file if data is empty and flag is set
