@@ -10,13 +10,13 @@
             "shell_cmd": "\".venv/bin/python3\" -u \"$file\"",
             "env": {
                 "PYTHONIOENCODING": "utf-8",
-                "PYTHONPATH": "."
+                "PYTHONPATH": ".",
             },
-            "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)"
-        }
+            "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+        },
     ],
     "settings": {},
     "folders": [
-        { "path": "." }
+        { "path": "." },
     ]
 }
