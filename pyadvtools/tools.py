@@ -43,7 +43,7 @@ def iterate_obtain_full_file_names(
     regex = None
     if is_standard_file_name and search_year_list:
         # Create regex pattern matching any of the specified years, such as AAAI_2020.bib
-        regex = re.compile(f'({"|".join(search_year_list)})')
+        regex = re.compile(f"({'|'.join(search_year_list)})")
 
     file_list = []
     # Recursively walk through all directories and subdirectories

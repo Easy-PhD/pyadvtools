@@ -37,10 +37,7 @@ class GitAutoCommitter:
         """
         try:
             os.chdir(self.repo_path)
-            result = subprocess.run(
-                ["git", "status", "--porcelain"],
-                capture_output=True, text=True, check=True
-            )
+            result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, check=True)
             return bool(result.stdout.strip())
         finally:
             os.chdir(self.original_dir)
@@ -65,8 +62,7 @@ class GitAutoCommitter:
             # Get current branch if not specified
             if branch is None:
                 branch_result = subprocess.run(
-                    ["git", "branch", "--show-current"],
-                    capture_output=True, text=True, check=True
+                    ["git", "branch", "--show-current"], capture_output=True, text=True, check=True
                 )
                 branch = branch_result.stdout.strip()
 
@@ -79,13 +75,11 @@ class GitAutoCommitter:
 
             # Get commit hashes
             local_hash = subprocess.run(
-                ["git", "rev-parse", local_ref],
-                capture_output=True, text=True, check=True
+                ["git", "rev-parse", local_ref], capture_output=True, text=True, check=True
             ).stdout.strip()
 
             remote_hash = subprocess.run(
-                ["git", "rev-parse", remote_ref],
-                capture_output=True, text=True, check=True
+                ["git", "rev-parse", remote_ref], capture_output=True, text=True, check=True
             ).stdout.strip()
 
             # Return True if hashes are identical
@@ -120,8 +114,7 @@ class GitAutoCommitter:
             # Get current branch if not specified
             if branch is None:
                 branch_result = subprocess.run(
-                    ["git", "branch", "--show-current"],
-                    capture_output=True, text=True, check=True
+                    ["git", "branch", "--show-current"], capture_output=True, text=True, check=True
                 )
                 branch = branch_result.stdout.strip()
 
